@@ -38,4 +38,6 @@
 ## Сборка
 
 g++ -std=c++17 main.cpp string_compressor.cpp -o program.exe
+
+
 ./program.exe
