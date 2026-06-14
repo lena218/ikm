@@ -6,33 +6,29 @@
 #include <string>
 #include <string_view>
 
-namespace string_compressor {
-
 class CompressionException : public std::runtime_error {
- public:
-  explicit CompressionException(const std::string& message);
+public:
+    using std::runtime_error::runtime_error;
 };
 
 class StringCompressor {
- public:
-  StringCompressor() = default;
-  explicit StringCompressor(std::string input);
+public:
+    StringCompressor() = default;
+    explicit StringCompressor(std::string input);
 
-  void SetInputString(std::string input);
-  void Compress();
+    void SetInputString(std::string input);
+    void Compress();
 
-  std::string_view GetInputString() const noexcept;
-  std::optional<std::string_view> GetCompressedResult() const noexcept;
-  bool WasCompressed() const noexcept;
-  void Clear() noexcept;
+    std::string_view GetInputString() const noexcept;
+    std::optional<std::string_view> GetCompressedResult() const noexcept;
+    bool WasCompressed() const noexcept;
+    void Clear() noexcept;
 
- private:
-  std::string input_string_;
-  std::optional<std::string> result_;
+private:
+    std::string input_string_;
+    std::optional<std::string> result_;
 
-  std::string CompressOnce(const std::string& str) const;
+    std::string CompressOnce(const std::string& str) const;
 };
-
-}  // namespace string_compressor
 
 #endif
