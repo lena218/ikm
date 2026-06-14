@@ -44,7 +44,18 @@ void StringCompressor::Compress() {
         }
     }
 
-    result_ = CompressOnce(input_string_);
+    // Запускаем цикл повторного сжатия, пока это возможно - нужно по заданию
+    std::string current_str = input_string_;
+    while (true) {
+        std::string next_str = CompressOnce(current_str);
+        
+        if (next_str == current_str) {
+            break;
+        }
+        current_str = next_str;
+    }
+
+    result_ = current_str;
 }
 
 std::string_view StringCompressor::GetInputString() const noexcept {
